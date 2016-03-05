@@ -1,0 +1,30 @@
+body { 
+  font-family: "Microsoft YaHei", "Lucida Grande",Helvetica,Arial ,sans-serif ;
+  font-size:20px ;
+}
+
+p{
+     padding:5px ;
+}
+
+#footer{
+    font:15px Verdana,Consolas;
+}
+#head{
+    color:#444444;
+    font-family: Verdana,Consolas;
+    /* fallback for old browsers */
+    background:#3CB371; 
+    /* Chrome 10-25, Safari 5.1-6 */
+    background-image: -webkit-linear-gradient(to left,#AAFFA9, #3CB371);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to left,  #AAFFA9, #3CB371); 
+}
+
+#loginForm{
+    border-style: solid;
+    border-color: #A9A9A9;
+    border-width: 2px;
+    border-radius:5px
+}
+

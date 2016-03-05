@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<% include header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>我的社团</h2>
+            <br>
+            <table class="table table-hover">
+                <tbody>
+                    <% if (clubs.length===0){ %>
+                        <p>你现在还没有加入任何社团 <a>>去社团广场看看？</a></p>
+                    <% } %>
+                    <% for (var i=0; i<clubs.length; i++) { %>
+                        <tr>
+                            <th><%= clubs[i] %></th>
+                            <th>
+                                <a href="/current_club/<%= clubs[i] %>"><button type="submit" class="btn btn-info">查看</button></a>
+                            </th>
+                        </tr>
+                    <% } %>
+                   
+                </tbody>
+            <table>
+        </div>
+    </div>
+<div>
+<% include footer.ejs %>

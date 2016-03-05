@@ -1,0 +1,6 @@
+<% if (locals.messages){ %>
+    <% messages.forEach(function(message){ %>
+        <div class="alert alert-warning" role="alert"><p class="<%= message.type %> text-center"><%= message.string %></p></div>
+    <% }) %>
+    <% removeMessages() %>
+<% } %>

@@ -1,0 +1,8 @@
+{
+    "dbpath":"mongodb://localhost/clubservice",
+    "dbopts":{
+        "server":{
+            "socketOptions":{"keepAlive":"1"}
+        }
+    }
+}

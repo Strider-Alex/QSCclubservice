@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<% include header.ejs %>
+<div class='container'>
+    <div class='row'>
+        <div class="col-md-6">
+            <h2><%= club_name %></h3><br>
+            <h3>社团简介：</h5><br>
+            <p><%= information %></p><br>
+            <% for (var i=0; i<tags.length; i++) { %>
+                <span class="label label-primary"><%= tags[i] %></span>
+            <% } %>
+            <br><br><br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>职位</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <% for (var n=1; n<=4;n++) { %>
+                        <% for (var i=0; i<members.length; i++) { %>
+                            <% if (members[i].level===n) {%>
+                                <tr>
+                                    <th><%= members[i].name %></th>
+                                    <th><%= members[i].title %></th>
+                                    <th>   
+                                        <div class="dropdown">
+                                        
+                                            <%if (members[i].name===user.name){ %>
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    <img src="../images/iconfont-wo.png" alt="我" width="25" height="25"><span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                    <li><a href="#">查看</a></li>
+                                                    <li><a href="#" id="delete<%= i %>">退出</a></li>
+                                                </ul>
+                                                
+                                            <% } else { %>
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    <img src="../images/iconfont-guanli.png" alt="管理" width="25" height="25"><span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                    <li><a href="#">查看</a></li>
+                                                    <% if (current_level<=2&&current_level<members[i].level){ %>
+                                                        <li><a href="#">委任</a></li>
+                                                        <li><a href="#"id="delete<%= i %>">移除</a></li>
+                                                    <% } %>
+                                            <% } %>
+                                            <script type="text/javascript">
+                                                    $(document).ready(function(){
+                                                        $("a#delete<%= i %>").click(function(){
+                                                            $.post("/api/member/delete",
+                                                            {
+                                                                current_club: "<%= club_name %>",
+                                                                member: {
+                                                                    name:"<%= members[i].name %>",
+                                                                    title:"<%= members[i].title %>",
+                                                                    level:"<%= members[i].level %>"
+                                                                }   
+                                                            },
+                                                            function(data,status){
+                                                                //some notification here             
+                                                                window.location.reload();
+                                                                alert(data.update);
+                                                            });
+
+                                                        });
+                                                    });
+                                            </script>
+                                        </div>
+                                    </th>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                    
+                </tbody>
+            <table>
+        </div>
+    </div>
+</div>
+<% include footer.ejs %>
